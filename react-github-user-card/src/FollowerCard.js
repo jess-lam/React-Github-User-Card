@@ -1,16 +1,15 @@
 import React from "react";
 
-const UserCard = props => {
+const FollowerCard = props => {
     console.log(props);
     return (
         <div>
             <h1>Github Follower Card</h1>
             <img src={props.avatar_url}/>
-            <p>{props.name}</p>
-            <p>{props.location}</p>
-            <p>{props.followers}</p>
+            <p>{props.login}</p>
+            <p>{props.type}</p>
         </div>
     );
 };
 
-export default UserCard;
+export default FollowerCard;

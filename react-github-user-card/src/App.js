@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import UserCard from "./UserCard";
+import FollowerCard from "./FollowerCard";
 
 class App extends React.Component {
   state= {
@@ -20,7 +21,8 @@ class App extends React.Component {
     fetch("https://api.github.com/users/jess-lam/followers")
     .then(response => response.json())
     .then(follower => {
-      this.setState({...this.state, followers: follower})
+      console.log(follower);
+        this.setState({...this.state, followers: follower})
     })
   };
 
@@ -28,7 +30,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>User's followers</h1>
-        <UserCard name={this.state.users.name}  location={this.state.users.location} followers={this.state.users.followers}/>
+        <UserCard avatar_url={this.state.users.avatar_url} name={this.state.users.name}  location={this.state.users.location} followers={this.state.users.followers}/>
+        {this.state.followers.map(friends => {
+          return <FollowerCard avatar_url={friends.avatar_url} login={friends.login} type={friends.type}/>
+        })}
+
       </div>
     )
   }
